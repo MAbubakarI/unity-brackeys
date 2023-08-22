@@ -39,7 +39,7 @@ public class playermovement : MonoBehaviour
         {
             playerx -= 04 * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space) && !IsRoofed())
+        if (Input.GetKey(KeyCode.W) && !IsRoofed())
         {
             playery += 05 * Time.deltaTime;
 
