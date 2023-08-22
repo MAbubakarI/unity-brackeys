@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class playermovement : MonoBehaviour
 {
-    public double playerx = 0;
-    public double playery;
-    public int playerz;
+    public double playerx;
+    public double playery = 3;
+    public double cameraz = -12;
     public bool faceright = true;
     //  public Vector3 playerpos;
     public Transform player;
+    public Transform cameratransform;
     // public int jumptimer;
 
     [SerializeField] private Transform groundcheck;
+    [SerializeField] private Transform roofcheck;
     [SerializeField] private LayerMask groundlayer;
 
     // Start is called before the first frame update
@@ -27,23 +29,38 @@ public class playermovement : MonoBehaviour
         // jumptimer -= 1;
         if (!IsGrounded())
         {
-            playery -= 0.01;
+            playery -= 1.5 * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            playerx += 0.1;
+            playerx += 04 * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            playerx -= 0.1;
+            playerx -= 04 * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && !IsRoofed())
         {
-            playery += 0.05;
+            playery += 05 * Time.deltaTime;
 
 
         }
-        player.position = (new Vector3((float)playerx, (float)playery, playerz));
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5)
+        {
+            cameraz += 0.5;
+
+
+
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20)
+        {
+            cameraz -= 00.5;
+
+
+
+        }
+        player.position = (new Vector3((float)playerx, (float)playery, 0));
+        cameratransform.position = new Vector3((float)playerx, (float)playery, (int)cameraz);
 
         Flip();
 
@@ -53,6 +70,10 @@ public class playermovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundcheck.position, 0.01f, groundlayer);
+    }
+    private bool IsRoofed()
+    {
+        return Physics2D.OverlapCircle(roofcheck.position, 0.04f, groundlayer);
     }
 
     void Flip() 
