@@ -20,7 +20,9 @@ public class batterylevel : MonoBehaviour
     public TMP_Text currentdiff;
     public bool diffsel;
     public GameObject startpanel;
-
+    public int maxhp;
+    public Gradient gradient;
+    public UnityEngine.UI.Image fill;
     public void SetPaused()
     {
         paused = true;
@@ -54,6 +56,7 @@ public class batterylevel : MonoBehaviour
             battery = 1000;
             currentdiff.text = "Easy";
             diffsel = true;
+            slider.maxValue = 1000;
         }
         buttonclick = true;
 
@@ -63,6 +66,7 @@ public class batterylevel : MonoBehaviour
         if (buttonclick == false)
         {
             battery = 400;
+            slider.maxValue = 400;
             currentdiff.text = "Medium";
             diffsel = true;
         }
@@ -74,6 +78,7 @@ public class batterylevel : MonoBehaviour
         if (buttonclick == false)
         {
             battery = 200;
+            slider.maxValue = 200;
             currentdiff.text = "Hardcore";
             diffsel = true;
         }
@@ -95,12 +100,14 @@ public class batterylevel : MonoBehaviour
             startpanel.SetActive(false);
 
 
+
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        paused = true;
         
     }
 
@@ -109,9 +116,12 @@ public class batterylevel : MonoBehaviour
     {
         if (battery <= 0) 
         { gamepanel.SetActive(true); }
+      //  else if (diffsel == true){ battery =}
         else if (battery>0 && paused == false && peaceful == false)
         { battery -= (double)0.005; }
+
         slider.value = (float)battery;
+        fill.color = gradient.Evaluate(slider.normalizedValue);
         
     }
    
