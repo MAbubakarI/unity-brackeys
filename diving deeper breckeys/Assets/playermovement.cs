@@ -18,8 +18,11 @@ public class playermovement : MonoBehaviour
     [SerializeField] private Transform roofcheck;
     public Transform allplayer;
     public Transform sidecheck;
-               public Transform sidecheckone;
+    public Transform sidecheckone;
     public Transform sidechecktwo;
+    public Transform leftcheck;
+    public Transform leftcheckone;
+    public Transform leftchecktwo;
 
     [SerializeField] private LayerMask groundlayer;
 
@@ -45,13 +48,13 @@ public class playermovement : MonoBehaviour
         // jumptimer -= 1;
         if (!IsGrounded())
         {
-            playery -= 1.5 * Time.deltaTime;
+            playery -= 2.25 * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree())
         {
             playerx += 04 * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && ! IsLeftone() && ! IsLefttwo() && !IsLeftThree())
         {
             playerx -= 04 * Time.deltaTime;
         }
@@ -91,9 +94,29 @@ public class playermovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(roofcheck.position, 0.04f, groundlayer);
     }
-    private bool IsWalled()
+    private bool IsRightone()
     {
         return Physics2D.OverlapCircle(sidecheck.position, 0.04f, groundlayer);
+    }
+    private bool IsRighttwo()
+    {
+        return Physics2D.OverlapCircle(sidecheckone.position, 0.04f, groundlayer);
+    }
+    private bool IsRightthree()
+    {
+        return Physics2D.OverlapCircle(sidechecktwo.position, 0.04f, groundlayer);
+    }
+    private bool IsLeftone()
+    {
+        return Physics2D.OverlapCircle(leftcheck.position, 0.04f, groundlayer);
+    }
+    private bool IsLefttwo()
+    {
+        return Physics2D.OverlapCircle(leftcheckone.position, 0.04f, groundlayer);
+    }
+    private bool IsLeftThree()
+    {
+        return Physics2D.OverlapCircle(leftchecktwo.position, 0.04f, groundlayer);
     }
 
     void Flip() 
