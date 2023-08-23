@@ -16,6 +16,11 @@ public class playermovement : MonoBehaviour
 
     [SerializeField] private Transform groundcheck;
     [SerializeField] private Transform roofcheck;
+    public Transform allplayer;
+    public Transform sidecheck;
+               public Transform sidecheckone;
+    public Transform sidechecktwo;
+
     [SerializeField] private LayerMask groundlayer;
 
     bool canInteract = false;
@@ -24,7 +29,8 @@ public class playermovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    //    allplayer.position = (new Vector3(0, 10, 0));
+   //     cameratransform.position = (new Vector3(0, 10, -15));
     }
 
     // Update is called once per frame
@@ -69,7 +75,7 @@ public class playermovement : MonoBehaviour
 
 
         }
-        player.position = (new Vector3((float)playerx, (float)playery, 0));
+        allplayer.position = (new Vector3((float)playerx, (float)playery, 0));
         cameratransform.position = new Vector3((float)playerx, (float)playery, (int)cameraz);
 
         Flip();
@@ -84,6 +90,10 @@ public class playermovement : MonoBehaviour
     private bool IsRoofed()
     {
         return Physics2D.OverlapCircle(roofcheck.position, 0.04f, groundlayer);
+    }
+    private bool IsWalled()
+    {
+        return Physics2D.OverlapCircle(sidecheck.position, 0.04f, groundlayer);
     }
 
     void Flip() 
