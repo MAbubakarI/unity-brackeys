@@ -30,7 +30,7 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canInteract == true)
+        if (Input.GetKeyDown(KeyCode.Space) && canInteract == true)
         {
             collref.GetComponent<Rigidbody2D>().isKinematic = false;
             collref.GetComponent<CircleCollider2D>().enabled = false;

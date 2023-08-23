@@ -11,6 +11,18 @@ public class batterylevel : MonoBehaviour
     public UnityEngine.UI.Slider  slider;
     public double battery = 100;
     public GameObject gamepanel;
+    public bool paused = false;
+
+    public void SetPaused()
+    {
+        paused = true;
+
+    }
+    public void SetUnPaused()
+    {
+        paused = false;
+
+    }
 
 
     // Start is called before the first frame update
@@ -22,8 +34,9 @@ public class batterylevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (battery <= 0) { gamepanel.SetActive(true); }
-        else
+        if (battery <= 0) 
+        { gamepanel.SetActive(true); }
+        else if (battery>0 && paused == false)
         { battery -= (double)0.005; }
         slider.value = (float)battery;
         
