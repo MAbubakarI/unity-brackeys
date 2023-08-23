@@ -94,6 +94,7 @@ public class playermovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("e");
         collref = collision.gameObject;
         if (collision.gameObject.tag == "Collectable") canInteract = true;
     }
