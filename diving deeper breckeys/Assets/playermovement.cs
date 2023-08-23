@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class playermovement : MonoBehaviour
     [SerializeField] private Transform roofcheck;
     [SerializeField] private LayerMask groundlayer;
 
+    bool canInteract = false;
+    public GameObject collref;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,12 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E) && canInteract == true)
+        {
+            collref.GetComponent<Rigidbody2D>().isKinematic = false;
+            collref.GetComponent<CircleCollider2D>().enabled = false;
+            collref.GetComponent<SpringJoint2D>().enabled = true;
+        }
         // jumptimer -= 1;
         if (!IsGrounded())
         {
@@ -77,17 +87,19 @@ public class playermovement : MonoBehaviour
     }
 
     void Flip() 
-    { 
-    if (Input.GetKeyDown (KeyCode.A) && faceright == true)
-        {
-            player.localScale = new Vector3(-1, 1, 1);
-
-        }
-        if (Input.GetKeyDown(KeyCode.D) && faceright == false)
-        {
-            player.localScale = new Vector3(-1, 1, 1);
-
-        }
+    {
+        if (Input.GetKeyDown (KeyCode.A) && faceright == true) player.localScale = new Vector3(-1, 1, 1);
+        if (Input.GetKeyDown(KeyCode.D) && faceright == false) player.localScale = new Vector3(-1, 1, 1);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collref = collision.gameObject;
+        if (collision.gameObject.tag == "Collectable") canInteract = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Collectable") canInteract = false;
+    }
 }
