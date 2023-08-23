@@ -5,7 +5,7 @@ using UnityEngine;
 public class playermovement : MonoBehaviour
 {
     public double playerx;
-    public double playery = 3;
+    public double playery;
     public double cameraz = -12;
     public bool faceright = true;
     //  public Vector3 playerpos;
