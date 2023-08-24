@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collectable / Plastic
-  - Collectable / Metal
-  - Collectable / Treasure
-  - Collectable
+  - Score
+  - Collectable / 1
+  - Collectable / 2
+  - Collectable / 3
   layers:
   - Default
   - TransparentFX

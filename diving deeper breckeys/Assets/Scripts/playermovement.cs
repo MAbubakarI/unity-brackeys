@@ -32,6 +32,9 @@ public class playermovement : MonoBehaviour
     bool canInteract = false;
     GameObject collref;
     public Stack<GameObject> carry = new Stack<GameObject>();
+    GameObject drop;
+
+    public int score;
 
     // Start is called before the first frame update
     void Start()
@@ -53,10 +56,11 @@ public class playermovement : MonoBehaviour
                 collref.GetComponent<CircleCollider2D>().enabled = false;
                 collref.GetComponent<SpringJoint2D>().connectedBody = rb;
                 collref.GetComponent<SpringJoint2D>().enabled = true;
+                canInteract = false;
             }
             else if (!canInteract && carry.Count > 0)
             {
-                GameObject drop = carry.Pop();
+                drop = carry.Pop();
 
                 Rigidbody2D droprb = drop.GetComponent<Rigidbody2D>();
                 droprb.isKinematic = true;
@@ -122,12 +126,25 @@ public class playermovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name + " : " + collision.gameObject.tag);
-        collref = collision.gameObject;
-        if (collision.gameObject.tag.Split()[0] == "Collectable") canInteract = true;
+        if (collision.gameObject.tag.Split()[0] == "Collectable")
+        {
+            collref = collision.gameObject;
+            canInteract = true;
+        }
+        else if (collision.gameObject.tag == "Score")
+        {
+            while (carry.Count > 0)
+            {
+                drop = carry.Pop();
+                score += int.Parse(drop.tag.Split('/')[1]);
+                Destroy(drop);
+                Debug.Log(score);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Collectable") canInteract = false;
+        if (collision.gameObject.tag.Split()[0] == "Collectable") canInteract = false;
     }
 }

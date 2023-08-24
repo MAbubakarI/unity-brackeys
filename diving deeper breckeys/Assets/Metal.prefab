@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1998595127905689458, guid: a3b1b56718316ea4cab403112447e60e, type: 3}
       propertyPath: m_TagString
-      value: Collectable / Metal
+      value: Collectable / 2
       objectReference: {fileID: 0}
     - target: {fileID: 4945346012368110097, guid: a3b1b56718316ea4cab403112447e60e, type: 3}
       propertyPath: m_LocalPosition.x
