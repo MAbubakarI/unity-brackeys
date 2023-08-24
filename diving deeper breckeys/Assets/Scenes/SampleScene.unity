@@ -6623,6 +6623,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
   fill: {fileID: 1736022910}
+  carryweight: 0
 --- !u!1 &876944818
 GameObject:
   m_ObjectHideFlags: 0

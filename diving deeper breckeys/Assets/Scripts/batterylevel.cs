@@ -23,6 +23,7 @@ public class batterylevel : MonoBehaviour
     public int maxhp;
     public Gradient gradient;
     public UnityEngine.UI.Image fill;
+    public int carryweight;
    
   
 
@@ -47,6 +48,7 @@ public class batterylevel : MonoBehaviour
             currentdiff.text = "Peaceful";
             diffsel = true;
         }
+        carryweight = 15;
         buttonclick = true;
 
 
@@ -62,6 +64,7 @@ public class batterylevel : MonoBehaviour
             slider.maxValue = 1000;
             peaceful = false;
         }
+        carryweight = 8;
         buttonclick = true;
 
     }
@@ -75,6 +78,7 @@ public class batterylevel : MonoBehaviour
             diffsel = true;
             peaceful = false;
         }
+        carryweight = 6;
         buttonclick = true;
 
     }
@@ -89,6 +93,7 @@ public class batterylevel : MonoBehaviour
             currentdiff.text = "Hardcore";
             diffsel = true;
         }
+        carryweight = 4;
         buttonclick = true;
 
     }
