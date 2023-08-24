@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class playermovement : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class playermovement : MonoBehaviour
     public Transform leftcheckone;
     public Transform leftchecktwo;
     batterylevel neededscript;
+    public TMP_Text scoretext;
+    public TMP_Text endscore;
 
 
     [SerializeField] private LayerMask groundlayer;
@@ -71,6 +74,7 @@ public class playermovement : MonoBehaviour
                 drop.GetComponent<CircleCollider2D>().enabled = true;
                 drop.GetComponent<SpringJoint2D>().enabled = false;
             }
+
         }
 
         // jumptimer -= 1;
@@ -85,6 +89,10 @@ public class playermovement : MonoBehaviour
         allplayer.position = (new Vector3((float)playerx, (float)playery, 0));
         cameratransform.position = new Vector3((float)playerx, (float)playery, (int)cameraz);
         Flip();
+
+        scoretext.text = score.ToString();
+        endscore.text = score.ToString();
+
     }
     private bool IsGrounded()
     {
