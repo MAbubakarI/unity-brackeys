@@ -25,7 +25,7 @@ public class batterypickps : MonoBehaviour
     void Update()
     {
         
-        if(IsBattery())
+        //if(IsBattery())
         {
 
             Debug.Log("collision detected");

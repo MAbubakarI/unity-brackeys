@@ -3920,6 +3920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f29803570f96fe4f9a9ea56f16723ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 339605784}
   playerx: 0
   playery: 0
   cameraz: -12
@@ -3929,7 +3930,7 @@ MonoBehaviour:
   groundcheck: {fileID: 937553700}
   roofcheck: {fileID: 947404087}
   allplayer: {fileID: 2122386698}
-  sidecheck: {fileID: 281333500}
+  sidecheck: {fileID: 2074898689}
   sidecheckone: {fileID: 1653868346}
   sidechecktwo: {fileID: 901777729}
   leftcheck: {fileID: 2074898689}
@@ -11429,6 +11430,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2044f2164d1219549ac357b4294a29c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  batterycheck: {fileID: 0}
+  batterycheckone: {fileID: 0}
+  batterychecktwo: {fileID: 0}
+  batterylayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1949019789
 GameObject:
   m_ObjectHideFlags: 0
@@ -12410,3 +12417,4 @@ SceneRoots:
   - {fileID: 792964057}
   - {fileID: 1671867489}
   - {fileID: 1698928619}
+  - {fileID: 1889254403}
