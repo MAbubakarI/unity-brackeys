@@ -3901,6 +3901,7 @@ GameObject:
   - component: {fileID: 339605780}
   - component: {fileID: 339605784}
   - component: {fileID: 339605785}
+  - component: {fileID: 339605786}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -3920,6 +3921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f29803570f96fe4f9a9ea56f16723ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   playerx: 0
   playery: 0
   cameraz: -12
@@ -4070,6 +4072,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &339605786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339605779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2044f2164d1219549ac357b4294a29c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &352837893
 GameObject:
   m_ObjectHideFlags: 0
@@ -11297,7 +11311,6 @@ GameObject:
   - component: {fileID: 1889254403}
   - component: {fileID: 1889254402}
   - component: {fileID: 1889254401}
-  - component: {fileID: 1889254404}
   m_Layer: 0
   m_Name: addbattery
   m_TagString: Untagged
@@ -11417,18 +11430,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1889254404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889254400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2044f2164d1219549ac357b4294a29c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1949019789
 GameObject:
   m_ObjectHideFlags: 0
@@ -12410,3 +12411,4 @@ SceneRoots:
   - {fileID: 792964057}
   - {fileID: 1671867489}
   - {fileID: 1698928619}
+  - {fileID: 1889254403}
