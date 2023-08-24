@@ -24,7 +24,7 @@ public class batterylevel : MonoBehaviour
     public Gradient gradient;
     public UnityEngine.UI.Image fill;
     public int carryweight = 6;
-   
+    public playermovement playermovement;
   
 
     public void SetPaused()
@@ -128,14 +128,8 @@ public class batterylevel : MonoBehaviour
     }
     public void StartGame() 
     {
-        if (diffsel == true)
-        {
-            startpanel.SetActive(false);
-            
-
-
-        }
-        Debug.Log(carryweight);
+        if (diffsel == true) startpanel.SetActive(false);
+        playermovement.carryweight = carryweight;
     }
 
     // Start is called before the first frame update

@@ -3941,7 +3941,7 @@ MonoBehaviour:
   groundlayer:
     serializedVersion: 2
     m_Bits: 8
-  carryWeight: 0
+  carryweight: 0
   score: 0
 --- !u!212 &339605782
 SpriteRenderer:
@@ -6625,6 +6625,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   fill: {fileID: 1736022910}
   carryweight: 0
+  playermovement: {fileID: 339605780}
 --- !u!1 &876944818
 GameObject:
   m_ObjectHideFlags: 0
