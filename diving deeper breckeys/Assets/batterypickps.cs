@@ -6,9 +6,6 @@ using UnityEngine;
 public class batterypickps : MonoBehaviour
 {
     batterylevel neededscript;
-    public Transform batterycheck;
-    public Transform batterycheckone;
-    public Transform batterychecktwo;
     [Serialize] public LayerMask batterylayer;
 
     private bool IsBattery()
@@ -25,12 +22,12 @@ public class batterypickps : MonoBehaviour
     void Update()
     {
         
-        if(IsBattery())
-        {
+      //  if(IsBattery())
+       // {
 
             Debug.Log("collision detected");
             neededscript.AddBattery();
-        }
+       // }
     }
 
     
