@@ -1,8 +1,9 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class playermovement : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class playermovement : MonoBehaviour
     GameObject collref;
     public Stack<GameObject> carry = new Stack<GameObject>();
     GameObject drop;
+    public int carryWeight;
 
     public int score;
 
@@ -74,14 +76,13 @@ public class playermovement : MonoBehaviour
                 drop.GetComponent<CircleCollider2D>().enabled = true;
                 drop.GetComponent<SpringJoint2D>().enabled = false;
             }
-
         }
 
         // jumptimer -= 1;
-        if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
-        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime;
-        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime;
-        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime;
+        if (!IsGrounded()) playery -= 2.25 * Time.deltaTime * Math.Max(1, (carry.Count - carryWeight + 2));
+        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryWeight + 2));
+        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryWeight + 2));
+        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime / Math.Max(1, (carry.Count - carryWeight + 2));
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20) cameraz -= 00.5;
@@ -92,7 +93,6 @@ public class playermovement : MonoBehaviour
 
         scoretext.text = score.ToString();
         endscore.text = score.ToString();
-
     }
     private bool IsGrounded()
     {
