@@ -23,7 +23,7 @@ public class batterylevel : MonoBehaviour
     public int maxhp;
     public Gradient gradient;
     public UnityEngine.UI.Image fill;
-    public int carryweight;
+    public int carryweight = 6;
    
   
 

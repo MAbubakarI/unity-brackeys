@@ -27,7 +27,7 @@ public class playermovement : MonoBehaviour
     public Transform leftcheck;
     public Transform leftcheckone;
     public Transform leftchecktwo;
-    batterylevel neededscript;
+    public batterylevel neededscript;
     public TMP_Text scoretext;
     public TMP_Text endscore;
 
@@ -45,9 +45,9 @@ public class playermovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        neededscript = GameObject.FindGameObjectWithTag("Health").GetComponent<batterylevel>();
         //    allplayer.position = (new Vector3(0, 10, 0));
         //     cameratransform.position = (new Vector3(0, 10, -15));
+        carryWeight = neededscript.carryweight;
     }
 
     // Update is called once per frame
@@ -83,6 +83,7 @@ public class playermovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryWeight + 2));
         if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryWeight + 2));
         if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime / Math.Max(1, (carry.Count - carryWeight + 2));
+        Debug.Log(Math.Max(1, (carry.Count - carryWeight + 2)));
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20) cameraz -= 00.5;
