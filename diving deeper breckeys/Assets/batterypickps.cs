@@ -18,7 +18,7 @@ public class batterypickps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        neededscript = GameObject.FindGameObjectWithTag("Collectable").GetComponent<batterylevel>();
+        neededscript = GameObject.FindGameObjectWithTag("Health").GetComponent<batterylevel>();
     }
 
     // Update is called once per frame

@@ -25,7 +25,8 @@ public class playermovement : MonoBehaviour
     public Transform leftcheck;
     public Transform leftcheckone;
     public Transform leftchecktwo;
-    
+    batterylevel neededscript;
+
 
     [SerializeField] private LayerMask groundlayer;
 
@@ -39,8 +40,9 @@ public class playermovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    //    allplayer.position = (new Vector3(0, 10, 0));
-   //     cameratransform.position = (new Vector3(0, 10, -15));
+        neededscript = GameObject.FindGameObjectWithTag("Health").GetComponent<batterylevel>();
+        //    allplayer.position = (new Vector3(0, 10, 0));
+        //     cameratransform.position = (new Vector3(0, 10, -15));
     }
 
     // Update is called once per frame
@@ -74,7 +76,7 @@ public class playermovement : MonoBehaviour
         // jumptimer -= 1;
         if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
         if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime;
-        if (Input.GetKey(KeyCode.A) && ! IsLeftone() && ! IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime;
+        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime;
         if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
@@ -117,9 +119,9 @@ public class playermovement : MonoBehaviour
         return Physics2D.OverlapCircle(leftchecktwo.position, 0.04f, groundlayer);
     }
 
-    void Flip() 
+    void Flip()
     {
-        if (Input.GetKeyDown (KeyCode.A) && faceright == true) player.localScale = new Vector3(-1, 1, 1);
+        if (Input.GetKeyDown(KeyCode.A) && faceright == true) player.localScale = new Vector3(-1, 1, 1);
         if (Input.GetKeyDown(KeyCode.D) && faceright == false) player.localScale = new Vector3(-1, 1, 1);
     }
 
@@ -141,10 +143,17 @@ public class playermovement : MonoBehaviour
                 Debug.Log(score);
             }
         }
-    }
 
+        else if (collision.gameObject.tag == "Battery")
+        {
+            Destroy(collision.gameObject);
+            neededscript.AddBattery();
+
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Split()[0] == "Collectable") canInteract = false;
     }
 }
+
