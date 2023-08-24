@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class playermovement : MonoBehaviour
 {
+    public Rigidbody2D rb;
+
     public double playerx;
     public double playery;
     public double cameraz = -12;
@@ -27,7 +29,8 @@ public class playermovement : MonoBehaviour
     [SerializeField] private LayerMask groundlayer;
 
     bool canInteract = false;
-    public GameObject collref;
+    GameObject collref;
+    public Stack<GameObject> carry = new Stack<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -39,52 +42,42 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canInteract == true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            collref.GetComponent<Rigidbody2D>().isKinematic = false;
-            collref.GetComponent<CircleCollider2D>().enabled = false;
-            collref.GetComponent<SpringJoint2D>().enabled = true;
+            if (canInteract)
+            {
+                carry.Push(collref);
+
+                collref.GetComponent<Rigidbody2D>().isKinematic = false;
+                collref.GetComponent<CircleCollider2D>().enabled = false;
+                collref.GetComponent<SpringJoint2D>().connectedBody = rb;
+                collref.GetComponent<SpringJoint2D>().enabled = true;
+            }
+            else if (!canInteract && carry.Count > 0)
+            {
+                GameObject drop = carry.Pop();
+
+                Rigidbody2D droprb = drop.GetComponent<Rigidbody2D>();
+                droprb.isKinematic = true;
+                droprb.velocity = Vector3.zero;
+                droprb.angularVelocity = 0;
+                drop.GetComponent<CircleCollider2D>().enabled = true;
+                drop.GetComponent<SpringJoint2D>().enabled = false;
+            }
         }
+
         // jumptimer -= 1;
-        if (!IsGrounded())
-        {
-            playery -= 2.25 * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree())
-        {
-            playerx += 04 * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A) && ! IsLeftone() && ! IsLefttwo() && !IsLeftThree())
-        {
-            playerx -= 04 * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W) && !IsRoofed())
-        {
-            playery += 05 * Time.deltaTime;
+        if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
+        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime;
+        if (Input.GetKey(KeyCode.A) && ! IsLeftone() && ! IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime;
+        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime;
 
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20) cameraz -= 00.5;
 
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5)
-        {
-            cameraz += 0.5;
-
-
-
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20)
-        {
-            cameraz -= 00.5;
-
-
-
-        }
         allplayer.position = (new Vector3((float)playerx, (float)playery, 0));
         cameratransform.position = new Vector3((float)playerx, (float)playery, (int)cameraz);
-
         Flip();
-
-
-
     }
     private bool IsGrounded()
     {
@@ -127,9 +120,9 @@ public class playermovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("e");
+        Debug.Log(collision.gameObject.name + " : " + collision.gameObject.tag);
         collref = collision.gameObject;
-        if (collision.gameObject.tag == "Collectable") canInteract = true;
+        if (collision.gameObject.tag.Split()[0] == "Collectable") canInteract = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
