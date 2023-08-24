@@ -79,9 +79,9 @@ public class playermovement : MonoBehaviour
 
         // jumptimer -= 1;
         if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
-        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 2));
-        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 2));
-        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 2));
+        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 1));
+        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 1));
+        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 1));
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20) cameraz -= 00.5;
