@@ -9,6 +9,7 @@ TagManager:
   - Collectable / 2
   - Collectable / 3
   - Health
+  - Battery
   layers:
   - Default
   - TransparentFX
