@@ -4,6 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Collectable / Plastic
+  - Collectable / Metal
+  - Collectable / Treasure
   - Collectable
   layers:
   - Default
