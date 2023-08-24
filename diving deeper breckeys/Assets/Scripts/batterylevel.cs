@@ -128,13 +128,14 @@ public class batterylevel : MonoBehaviour
     }
     public void StartGame() 
     {
-    if (diffsel == true)
+        if (diffsel == true)
         {
             startpanel.SetActive(false);
-
+            
 
 
         }
+        Debug.Log(carryweight);
     }
 
     // Start is called before the first frame update
