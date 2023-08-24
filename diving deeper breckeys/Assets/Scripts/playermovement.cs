@@ -38,7 +38,7 @@ public class playermovement : MonoBehaviour
     GameObject collref;
     public Stack<GameObject> carry = new Stack<GameObject>();
     GameObject drop;
-    public int carryweight;
+    public int carryweight = 15;
 
     public int score = 0;
 
