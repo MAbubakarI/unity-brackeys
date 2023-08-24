@@ -146,7 +146,7 @@ public class batterylevel : MonoBehaviour
 
         slider.value = (float)battery;
         fill.color = gradient.Evaluate(slider.normalizedValue);
-        if (IsBattery())
+        //if (IsBattery())
         {
             AddBattery();
 
