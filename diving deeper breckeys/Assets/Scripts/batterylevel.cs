@@ -41,7 +41,7 @@ public class batterylevel : MonoBehaviour
     }
     public void Peaceful()
     {
-        if (buttonclick == false)
+     //   if (buttonclick == false)
         {
             peaceful = true;
             currentdiff.text = "Peaceful";
@@ -54,32 +54,36 @@ public class batterylevel : MonoBehaviour
     }
     public void Easy()
     {
-        if (buttonclick == false)
+//if (buttonclick == false)
         {
             battery = 1000;
             currentdiff.text = "Easy";
             diffsel = true;
             slider.maxValue = 1000;
+            peaceful = false;
         }
         buttonclick = true;
 
     }
     public void Medium()
     {
-        if (buttonclick == false)
+      //  if (buttonclick == false)
         {
             battery = 400;
             slider.maxValue = 400;
             currentdiff.text = "Medium";
             diffsel = true;
+            peaceful = false;
         }
         buttonclick = true;
 
     }
     public void HardCore()
     {
-        if (buttonclick == false)
+        
+//if (buttonclick == false)
         {
+            peaceful = false;
             battery = 200;
             slider.maxValue = 200;
             currentdiff.text = "Hardcore";
