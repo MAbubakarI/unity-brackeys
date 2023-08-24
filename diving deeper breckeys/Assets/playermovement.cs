@@ -23,6 +23,7 @@ public class playermovement : MonoBehaviour
     public Transform leftcheck;
     public Transform leftcheckone;
     public Transform leftchecktwo;
+    
 
     [SerializeField] private LayerMask groundlayer;
 

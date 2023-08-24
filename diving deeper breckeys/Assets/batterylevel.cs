@@ -23,6 +23,9 @@ public class batterylevel : MonoBehaviour
     public int maxhp;
     public Gradient gradient;
     public UnityEngine.UI.Image fill;
+   
+  
+
     public void SetPaused()
     {
         paused = true;
@@ -93,6 +96,27 @@ public class batterylevel : MonoBehaviour
         diffsel = false;
 
     }
+    public void AddBattery() 
+    {
+    if (currentdiff.text == "Easy")
+        {
+            battery += 300;
+
+
+        }
+        else if (currentdiff.text == "Medium")
+        {
+            battery += 150;
+
+        }
+        else if (currentdiff.text == "Hardcore")
+        {
+            battery += 75;
+
+        }
+
+
+    }
     public void StartGame() 
     {
     if (diffsel == true)
@@ -122,6 +146,12 @@ public class batterylevel : MonoBehaviour
 
         slider.value = (float)battery;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        if (IsBattery())
+        {
+            AddBattery();
+
+
+        }
         
     }
    
