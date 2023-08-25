@@ -27,6 +27,8 @@ public class playermovement : MonoBehaviour
     public Transform leftcheck;
     public Transform leftcheckone;
     public Transform leftchecktwo;
+    public Transform groundchecktwo;
+    public Transform roofchecktwo;
     public batterylevel neededscript;
     public TMP_Text scoretext;
     public TMP_Text endscore;
@@ -88,10 +90,10 @@ public class playermovement : MonoBehaviour
        
         if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += Time.deltaTime * (04 - carryweight);
         if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= Time.deltaTime * (04 - carryweight);
-        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += Time.deltaTime * (05 - carryweight);
+        if (Input.GetKey(KeyCode.W) && !IsRoofed() && !IsRoofedtwo()) playery += Time.deltaTime * (05 - carryweight);
         if (Input.GetKey(KeyCode.Y)) Debug.Log(carryweight);
-        if (!IsGrounded() && Input.GetKey(KeyCode.S)) { playery -= 3 * Time.deltaTime; }
-        else if (!IsGrounded()) playery -= 1.25 * Time.deltaTime;
+        if (!IsGrounded() && !IsGroundedtwo() && Input.GetKey(KeyCode.S)) { playery -= 3 * Time.deltaTime; }
+        else if (!IsGrounded() && !IsGroundedtwo()) playery -= 1.25 * Time.deltaTime;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -15) cameraz -= 00.5;
@@ -111,6 +113,14 @@ public class playermovement : MonoBehaviour
     private bool IsRoofed()
     {
         return Physics2D.OverlapCircle(roofcheck.position, 0.04f, groundlayer);
+    }
+    private bool IsGroundedtwo()
+    {
+        return Physics2D.OverlapCircle(groundchecktwo.position, 0.01f, groundlayer);
+    }
+    private bool IsRoofedtwo()
+    {
+        return Physics2D.OverlapCircle(roofchecktwo.position, 0.04f, groundlayer);
     }
     private bool IsRightone()
     {
