@@ -23,7 +23,7 @@ public class batterylevel : MonoBehaviour
     public int maxhp;
     public Gradient gradient;
     public UnityEngine.UI.Image fill;
-    public int carryweight = 6;
+    public int carryload = 6;
     public playermovement playermovement;
   
 
@@ -48,7 +48,7 @@ public class batterylevel : MonoBehaviour
             currentdiff.text = "Peaceful";
             diffsel = true;
         }
-        carryweight = 15;
+            carryload = 15;
         buttonclick = true;
 
 
@@ -64,7 +64,7 @@ public class batterylevel : MonoBehaviour
             slider.maxValue = 1000;
             peaceful = false;
         }
-        carryweight = 8;
+        carryload = 8;
         buttonclick = true;
 
     }
@@ -78,7 +78,7 @@ public class batterylevel : MonoBehaviour
             diffsel = true;
             peaceful = false;
         }
-        carryweight = 6;
+        carryload = 5;
         buttonclick = true;
 
     }
@@ -93,7 +93,7 @@ public class batterylevel : MonoBehaviour
             currentdiff.text = "Hardcore";
             diffsel = true;
         }
-        carryweight = 4;
+        carryload = 3;
         buttonclick = true;
 
     }
@@ -129,7 +129,7 @@ public class batterylevel : MonoBehaviour
     public void StartGame() 
     {
         if (diffsel == true) startpanel.SetActive(false);
-        playermovement.carryweight = carryweight;
+        playermovement.carryload = carryload;
     }
 
     // Start is called before the first frame update
