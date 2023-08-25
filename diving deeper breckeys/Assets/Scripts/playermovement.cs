@@ -40,6 +40,7 @@ public class playermovement : MonoBehaviour
     GameObject drop;
     public int carryload = 15;
     float carryweight;
+    List<GameObject> ContactList = new List<GameObject>();
 
     public int score = 0;
 
@@ -77,6 +78,8 @@ public class playermovement : MonoBehaviour
                 droprb.angularVelocity = 0;
                 drop.GetComponent<CircleCollider2D>().enabled = true;
                 drop.GetComponent<SpringJoint2D>().enabled = false;
+
+                carryweight = (float)Math.Max(1, (carry.Count - carryload + 1)) / carryload;
             }
         }
 
@@ -84,7 +87,7 @@ public class playermovement : MonoBehaviour
         if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
         if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += Time.deltaTime * (04 - carryweight);
         if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= Time.deltaTime * (04 - carryweight);
-        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += Time.deltaTime * (05 - carryweight); ;
+        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += Time.deltaTime * (05 - carryweight);
         if (Input.GetKey(KeyCode.Y)) Debug.Log(carryweight);
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
@@ -143,6 +146,8 @@ public class playermovement : MonoBehaviour
         {
             collref = collision.gameObject;
             canInteract = true;
+            ContactList.Add(collision.gameObject);
+            Debug.Log(collref.GetInstanceID().GetType());
         }
         else if (collision.gameObject.tag == "Score")
         {
@@ -151,7 +156,6 @@ public class playermovement : MonoBehaviour
                 drop = carry.Pop();
                 score += int.Parse(drop.tag.Split('/')[1]);
                 Destroy(drop);
-                Debug.Log(score);
             }
         }
 
@@ -159,12 +163,15 @@ public class playermovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
             neededscript.AddBattery();
-
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Split()[0] == "Collectable") canInteract = false;
+        if (collision.gameObject.tag.Split()[0] == "Collectable")
+        {
+            canInteract = false;
+            ContactList.Remove(collision.gameObject);
+        }
     }
 }
 
