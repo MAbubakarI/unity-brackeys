@@ -30,6 +30,7 @@ public class playermovement : MonoBehaviour
     public batterylevel neededscript;
     public TMP_Text scoretext;
     public TMP_Text endscore;
+    public TMP_Text depth;
 
 
     [SerializeField] private LayerMask groundlayer;
@@ -81,14 +82,16 @@ public class playermovement : MonoBehaviour
         }
 
         // jumptimer -= 1;
-        if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
+       
         if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += Time.deltaTime * (04 - carryweight);
         if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= Time.deltaTime * (04 - carryweight);
         if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += Time.deltaTime * (05 - carryweight); ;
         if (Input.GetKey(KeyCode.Y)) Debug.Log(carryweight);
+        if (!IsGrounded() && Input.GetKey(KeyCode.S)) { playery -= 3 * Time.deltaTime; }
+        else if (!IsGrounded()) playery -= 1.25 * Time.deltaTime;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20) cameraz -= 00.5;
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -15) cameraz -= 00.5;
 
         allplayer.position = (new Vector3((float)playerx, (float)playery, 0));
         cameratransform.position = new Vector3((float)playerx, (float)playery, (int)cameraz);
@@ -96,6 +99,7 @@ public class playermovement : MonoBehaviour
 
         scoretext.text = score.ToString();
         endscore.text = score.ToString();
+        depth.text = ((int)playery+ "M");
     }
     private bool IsGrounded()
     {
