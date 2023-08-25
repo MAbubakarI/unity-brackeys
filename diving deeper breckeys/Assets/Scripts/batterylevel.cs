@@ -78,7 +78,7 @@ public class batterylevel : MonoBehaviour
             diffsel = true;
             peaceful = false;
         }
-        carryweight = 6;
+        carryweight = 5;
         buttonclick = true;
 
     }
@@ -93,7 +93,7 @@ public class batterylevel : MonoBehaviour
             currentdiff.text = "Hardcore";
             diffsel = true;
         }
-        carryweight = 4;
+        carryweight = 3;
         buttonclick = true;
 
     }
