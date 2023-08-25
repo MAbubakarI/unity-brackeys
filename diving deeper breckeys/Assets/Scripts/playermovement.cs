@@ -39,6 +39,7 @@ public class playermovement : MonoBehaviour
     public Stack<GameObject> carry = new Stack<GameObject>();
     GameObject drop;
     public int carryweight = 15;
+    public int cafs = 0;
 
     public int score = 0;
 
@@ -79,9 +80,10 @@ public class playermovement : MonoBehaviour
 
         // jumptimer -= 1;
         if (!IsGrounded()) playery -= 2.25 * Time.deltaTime;
-        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 1));
-        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= 04 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 1));
-        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += 05 * Time.deltaTime / Math.Max(1, (carry.Count - carryweight + 1));
+        if (Input.GetKey(KeyCode.D) && !IsRightone() && !IsRighttwo() && !IsRightthree()) playerx += Time.deltaTime * (04 - (Math.Max(1, (cafs - carryweight + 1)) / carryweight));
+        if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= Time.deltaTime * (04 - (Math.Max(1, (cafs - carryweight + 1)) / carryweight));
+        if (Input.GetKey(KeyCode.W) && !IsRoofed()) playery += Time.deltaTime * (05 - (Math.Max(1, (cafs - carryweight + 1)) / carryweight)); ;
+        if (Input.GetKey(KeyCode.Y)) Debug.Log((Math.Max(1, (cafs - carryweight + 1)) / carryweight));
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && cameraz > -20) cameraz -= 00.5;
