@@ -92,7 +92,7 @@ public class playermovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && !IsLeftone() && !IsLefttwo() && !IsLeftThree()) playerx -= Time.deltaTime * (04 - carryweight);
         if (Input.GetKey(KeyCode.W) && !IsRoofed() && !IsRoofedtwo()) playery += Time.deltaTime * (05 - carryweight);
         if (Input.GetKey(KeyCode.Y)) Debug.Log(carryweight);
-        if (!IsGrounded() && !IsGroundedtwo() && Input.GetKey(KeyCode.S)) { playery -= 3 * Time.deltaTime; }
+        if (!IsGrounded() && !IsGroundedtwo() && Input.GetKey(KeyCode.S)) { playery -= 4 * Time.deltaTime; }
         else if (!IsGrounded() && !IsGroundedtwo()) playery -= 1.25 * Time.deltaTime;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && cameraz < -5) cameraz += 0.5;
